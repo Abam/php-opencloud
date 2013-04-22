@@ -403,7 +403,7 @@ class OpenStack extends \OpenCloud\Base {
         if ($response->HttpStatus() == 413) {
             $obj = json_decode($response->HttpBody());
             if (!$this->CheckJsonError()) {
-                if (isset($obj->overLimit)) {
+                if (isset($obj->overLimit) && isset($obj->overLimit->retryAfter)) {
                 	/**
                 	 * @TODO(glen) - The documentation says "retryAt", but
                 	 * the field returned is "retryAfter". If the doc changes,
